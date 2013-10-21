@@ -33,7 +33,7 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
     NAME             => 'Net::Simplify',
     AUTHOR           => q{Simplify Commerce <info@simplify.com>},
-    VERSION          => '1.0.2',
+    VERSION          => '1.0.3',
     ABSTRACT         => 'Simplify Commerce Perl SDK',
     LICENSE          => 'BSD',
     PL_FILES         => {},
@@ -42,8 +42,7 @@ WriteMakefile(
         'ExtUtils::MakeMaker' => 0,
     },
     BUILD_REQUIRES => {
-        'Test::More' => 0,
-        'Module::Signature' => 0,
+        'Test::More' => 0
     },
     PREREQ_PM => {
         'Carp' => 0,
@@ -57,6 +56,5 @@ WriteMakefile(
         'URI::Encode' => 0
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
-    clean => { FILES => 'Net-Simplify-*' },
-    (MM->can('signature_target') ? (SIGN => 1) : ())
+    clean => { FILES => 'Net-Simplify-*' }
 );

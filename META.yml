@@ -3,7 +3,6 @@ abstract: 'Simplify Commerce Perl SDK'
 author:
   - 'Simplify Commerce <info@simplify.com>'
 build_requires:
-  Module::Signature: 0
   Test::More: 0
 configure_requires:
   ExtUtils::MakeMaker: 0
@@ -29,4 +28,4 @@ requires:
   Time::HiRes: 0
   URI::Encode: 0
   perl: 5.006
-version: v1.0.2
+version: v1.0.3

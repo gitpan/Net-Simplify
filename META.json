@@ -22,7 +22,6 @@
    "prereqs" : {
       "build" : {
          "requires" : {
-            "Module::Signature" : "0",
             "Test::More" : "0"
          }
       },
@@ -47,5 +46,5 @@
       }
    },
    "release_status" : "stable",
-   "version" : "v1.0.2"
+   "version" : "v1.0.3"
 }

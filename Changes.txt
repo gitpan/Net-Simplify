@@ -1,4 +1,8 @@
 
+21 October 2013   version 1.0.3
+
+   Disabling signing of the distribution to simplify the installation.
+
 21 October 2013   version 1.0.2
 
    Fixing error in package name that was causing a problem deploying
