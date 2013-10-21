@@ -33,7 +33,7 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
     NAME             => 'Net::Simplify',
     AUTHOR           => q{Simplify Commerce <info@simplify.com>},
-    VERSION          => '1.0.0',
+    VERSION          => '1.0.1',
     ABSTRACT         => 'Simplify Commerce Perl SDK',
     LICENSE          => 'BSD',
     PL_FILES         => {},

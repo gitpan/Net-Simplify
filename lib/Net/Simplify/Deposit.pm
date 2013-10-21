@@ -116,7 +116,7 @@ L<http://www.simplify.com>
 
 =head1 VERSION
 
-1.0.0
+1.0.1
 
 =head1 LICENSE
 

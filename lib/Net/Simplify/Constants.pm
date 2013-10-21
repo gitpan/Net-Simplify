@@ -11,7 +11,7 @@ L<http://www.simplify.com>
 
 =head1 VERSION
 
-1.0.0
+1.0.1
 
 =head1 LICENSE
 
@@ -46,7 +46,7 @@ use 5.006;
 use strict;
 use warnings FATAL => 'all';
 
-our $VERSION = "1.0.0";
+our $VERSION = "1.0.1";
 
 our $API_BASE_LIVE_URL = "https://api.simplify.com/v1/api";
 

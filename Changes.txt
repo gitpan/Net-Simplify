@@ -1,4 +1,9 @@
 
+21 October 2012   version 1.0.1
+
+   Fixing error in package name that was causing a problem deploying
+   to CPAN.
+
 21 October 2013   version 1.0.0
 
    Initial release
