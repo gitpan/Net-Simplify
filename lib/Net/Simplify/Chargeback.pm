@@ -8,6 +8,7 @@ Net::Simplify::Chargeback - A Simplify Commerce Chargeback object
 
   use Net::Simplify;
 
+
   $Net::Simplify::public_key = 'YOUR PUBLIC KEY';
   $Net::Simplify::private_key = 'YOUR PRIVATE KEY';
 
@@ -16,7 +17,7 @@ Net::Simplify::Chargeback - A Simplify Commerce Chargeback object
 
   # Retrieve a list of objects
   my $chargebacks = Net::Simplify::Chargeback->list({max => 10});
-  foreach my $$chargeback ($chargebacks->list) {
+  foreach my $v ($chargebacks->list) {
       # ...
   }
 
@@ -118,7 +119,7 @@ L<http://www.simplify.com>
 
 =head1 VERSION
 
-1.0.3
+1.0.4
 
 =head1 LICENSE
 

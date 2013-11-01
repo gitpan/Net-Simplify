@@ -8,6 +8,7 @@ Net::Simplify::Subscription - A Simplify Commerce Subscription object
 
   use Net::Simplify;
 
+
   $Net::Simplify::public_key = 'YOUR PUBLIC KEY';
   $Net::Simplify::private_key = 'YOUR PRIVATE KEY';
 
@@ -28,7 +29,7 @@ Net::Simplify::Subscription - A Simplify Commerce Subscription object
 
   # Retrieve a list of objects
   my $subscriptions = Net::Simplify::Subscription->list({max => 10});
-  foreach my $$subscription ($subscriptions->list) {
+  foreach my $v ($subscriptions->list) {
       # ...
   }
 
@@ -235,7 +236,7 @@ L<http://www.simplify.com>
 
 =head1 VERSION
 
-1.0.3
+1.0.4
 
 =head1 LICENSE
 

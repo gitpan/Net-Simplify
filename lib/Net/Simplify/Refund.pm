@@ -8,6 +8,7 @@ Net::Simplify::Refund - A Simplify Commerce Refund object
 
   use Net::Simplify;
 
+
   $Net::Simplify::public_key = 'YOUR PUBLIC KEY';
   $Net::Simplify::private_key = 'YOUR PRIVATE KEY';
 
@@ -19,7 +20,7 @@ Net::Simplify::Refund - A Simplify Commerce Refund object
 
   # Retrieve a list of objects
   my $refunds = Net::Simplify::Refund->list({max => 10});
-  foreach my $$refund ($refunds->list) {
+  foreach my $v ($refunds->list) {
       # ...
   }
 
@@ -163,7 +164,7 @@ L<http://www.simplify.com>
 
 =head1 VERSION
 
-1.0.3
+1.0.4
 
 =head1 LICENSE
 

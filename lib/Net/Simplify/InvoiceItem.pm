@@ -8,27 +8,28 @@ Net::Simplify::InvoiceItem - A Simplify Commerce InvoiceItem object
 
   use Net::Simplify;
 
+
   $Net::Simplify::public_key = 'YOUR PUBLIC KEY';
   $Net::Simplify::private_key = 'YOUR PRIVATE KEY';
 
   # Create a new InvoiceItem.
-  my $invoiceItem = Net::Simplify::InvoiceItem->create{ {...});
+  my $invoice_item = Net::Simplify::InvoiceItem->create{ {...});
 
   # Retrieve a InvoiceItem given its ID.
-  my $invoiceItem = Net::Simplify::InvoiceItem->find('a7e41');
+  my $invoice_item = Net::Simplify::InvoiceItem->find('a7e41');
 
   # Update existing InvoiceItem.
-  my $invoiceItem = Net::Simplify::InvoiceItem->find('a7e41');
-  $invoiceItem->{PROPERTY} = "NEW VALUE";
-  $invoiceItem->update();
+  my $invoice_item = Net::Simplify::InvoiceItem->find('a7e41');
+  $invoice_item->{PROPERTY} = "NEW VALUE";
+  $invoice_item->update();
 
   # Delete
-  my $invoiceItem = Net::Simplify::InvoiceItem->find('a7e41');
-  $invoiceItem->delete();
+  my $invoice_item = Net::Simplify::InvoiceItem->find('a7e41');
+  $invoice_item->delete();
 
   # Retrieve a list of objects
-  my $invoiceItems = Net::Simplify::InvoiceItem->list({max => 10});
-  foreach my $$invoiceItem ($invoiceItems->list) {
+  my $invoice_items = Net::Simplify::InvoiceItem->list({max => 10});
+  foreach my $v ($invoice_items->list) {
       # ...
   }
 
@@ -203,7 +204,7 @@ L<http://www.simplify.com>
 
 =head1 VERSION
 
-1.0.3
+1.0.4
 
 =head1 LICENSE
 

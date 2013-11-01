@@ -8,14 +8,15 @@ Net::Simplify::CardToken - A Simplify Commerce CardToken object
 
   use Net::Simplify;
 
+
   $Net::Simplify::public_key = 'YOUR PUBLIC KEY';
   $Net::Simplify::private_key = 'YOUR PRIVATE KEY';
 
   # Create a new CardToken.
-  my $cardToken = Net::Simplify::CardToken->create{ {...});
+  my $card_token = Net::Simplify::CardToken->create{ {...});
 
   # Retrieve a CardToken given its ID.
-  my $cardToken = Net::Simplify::CardToken->find('a7e41');
+  my $card_token = Net::Simplify::CardToken->find('a7e41');
 
 =head1 DESCRIPTION
 
@@ -131,7 +132,7 @@ L<http://www.simplify.com>
 
 =head1 VERSION
 
-1.0.3
+1.0.4
 
 =head1 LICENSE
 

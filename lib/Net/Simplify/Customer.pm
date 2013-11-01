@@ -8,6 +8,7 @@ Net::Simplify::Customer - A Simplify Commerce Customer object
 
   use Net::Simplify;
 
+
   $Net::Simplify::public_key = 'YOUR PUBLIC KEY';
   $Net::Simplify::private_key = 'YOUR PRIVATE KEY';
 
@@ -28,7 +29,7 @@ Net::Simplify::Customer - A Simplify Commerce Customer object
 
   # Retrieve a list of objects
   my $customers = Net::Simplify::Customer->list({max => 10});
-  foreach my $$customer ($customers->list) {
+  foreach my $v ($customers->list) {
       # ...
   }
 
@@ -341,7 +342,7 @@ L<http://www.simplify.com>
 
 =head1 VERSION
 
-1.0.3
+1.0.4
 
 =head1 LICENSE
 

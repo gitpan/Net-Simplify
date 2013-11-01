@@ -8,6 +8,7 @@ Net::Simplify::Webhook - A Simplify Commerce Webhook object
 
   use Net::Simplify;
 
+
   $Net::Simplify::public_key = 'YOUR PUBLIC KEY';
   $Net::Simplify::private_key = 'YOUR PRIVATE KEY';
 
@@ -28,7 +29,7 @@ Net::Simplify::Webhook - A Simplify Commerce Webhook object
 
   # Retrieve a list of objects
   my $webhooks = Net::Simplify::Webhook->list({max => 10});
-  foreach my $$webhook ($webhooks->list) {
+  foreach my $v ($webhooks->list) {
       # ...
   }
 
@@ -177,7 +178,7 @@ L<http://www.simplify.com>
 
 =head1 VERSION
 
-1.0.3
+1.0.4
 
 =head1 LICENSE
 

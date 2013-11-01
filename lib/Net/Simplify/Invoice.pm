@@ -8,6 +8,7 @@ Net::Simplify::Invoice - A Simplify Commerce Invoice object
 
   use Net::Simplify;
 
+
   $Net::Simplify::public_key = 'YOUR PUBLIC KEY';
   $Net::Simplify::private_key = 'YOUR PRIVATE KEY';
 
@@ -21,7 +22,7 @@ Net::Simplify::Invoice - A Simplify Commerce Invoice object
 
   # Retrieve a list of objects
   my $invoices = Net::Simplify::Invoice->list({max => 10});
-  foreach my $$invoice ($invoices->list) {
+  foreach my $v ($invoices->list) {
       # ...
   }
 
@@ -144,7 +145,7 @@ L<http://www.simplify.com>
 
 =head1 VERSION
 
-1.0.3
+1.0.4
 
 =head1 LICENSE
 

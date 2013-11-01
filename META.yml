@@ -28,4 +28,4 @@ requires:
   Time::HiRes: 0
   URI::Encode: 0
   perl: 5.006
-version: v1.0.3
+version: v1.0.4

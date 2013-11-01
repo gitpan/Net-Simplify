@@ -8,6 +8,7 @@ Net::Simplify::Payment - A Simplify Commerce Payment object
 
   use Net::Simplify;
 
+
   $Net::Simplify::public_key = 'YOUR PUBLIC KEY';
   $Net::Simplify::private_key = 'YOUR PRIVATE KEY';
 
@@ -19,7 +20,7 @@ Net::Simplify::Payment - A Simplify Commerce Payment object
 
   # Retrieve a list of objects
   my $payments = Net::Simplify::Payment->list({max => 10});
-  foreach my $$payment ($payments->list) {
+  foreach my $v ($payments->list) {
       # ...
   }
 
@@ -217,7 +218,7 @@ L<http://www.simplify.com>
 
 =head1 VERSION
 
-1.0.3
+1.0.4
 
 =head1 LICENSE
 

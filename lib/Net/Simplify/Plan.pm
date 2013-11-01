@@ -8,6 +8,7 @@ Net::Simplify::Plan - A Simplify Commerce Plan object
 
   use Net::Simplify;
 
+
   $Net::Simplify::public_key = 'YOUR PUBLIC KEY';
   $Net::Simplify::private_key = 'YOUR PRIVATE KEY';
 
@@ -28,7 +29,7 @@ Net::Simplify::Plan - A Simplify Commerce Plan object
 
   # Retrieve a list of objects
   my $plans = Net::Simplify::Plan->list({max => 10});
-  foreach my $$plan ($plans->list) {
+  foreach my $v ($plans->list) {
       # ...
   }
 
@@ -197,7 +198,7 @@ L<http://www.simplify.com>
 
 =head1 VERSION
 
-1.0.3
+1.0.4
 
 =head1 LICENSE
 

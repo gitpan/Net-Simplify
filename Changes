@@ -1,0 +1,20 @@
+Revision history for Perl module Net::Simplify
+
+1.0.4 2013-10-31
+
+   - Updates to API documentation.
+   - Update Changes to match CPAN::Changes::Spec.
+
+1.0.3 2013-10-21
+
+   - Disabling signing of the distribution to simplify the installation.
+
+1.0.2 2013-10-21
+
+   - Fixing error in package name that was causing a problem deploying
+   to CPAN.
+
+1.0.0 2013-10-21
+
+   - Initial release
+

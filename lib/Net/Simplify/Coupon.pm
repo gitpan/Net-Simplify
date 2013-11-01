@@ -8,6 +8,7 @@ Net::Simplify::Coupon - A Simplify Commerce Coupon object
 
   use Net::Simplify;
 
+
   $Net::Simplify::public_key = 'YOUR PUBLIC KEY';
   $Net::Simplify::private_key = 'YOUR PRIVATE KEY';
 
@@ -28,7 +29,7 @@ Net::Simplify::Coupon - A Simplify Commerce Coupon object
 
   # Retrieve a list of objects
   my $coupons = Net::Simplify::Coupon->list({max => 10});
-  foreach my $$coupon ($coupons->list) {
+  foreach my $v ($coupons->list) {
       # ...
   }
 
@@ -227,7 +228,7 @@ L<http://www.simplify.com>
 
 =head1 VERSION
 
-1.0.3
+1.0.4
 
 =head1 LICENSE
 
