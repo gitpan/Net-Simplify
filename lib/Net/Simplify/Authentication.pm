@@ -50,11 +50,11 @@ L<http://www.simplify.com>
 
 =head1 VERSION
 
-1.0.4
+1.0.5
 
 =head1 LICENSE
 
-Copyright (c) 2013, MasterCard International Incorporated
+Copyright (c) 2013, 2014 MasterCard International Incorporated
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are 

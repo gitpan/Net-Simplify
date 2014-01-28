@@ -73,7 +73,7 @@ State code (USPS code) of residence of the cardholder. (B<required>)
 
 =item card.addressZip
 
-Postal code of the cardholder. (B<required>) 
+Postal code of the cardholder. The postal code size is between 5 and 9 in length and only contain numbers. (B<required>) 
 
 =item card.cvc
 
@@ -97,7 +97,7 @@ Name as appears on the card. (B<required>)
 
 =item card.number
 
-Card number as it appears on the card. 
+Card number as it appears on the card. [max length: 19, min length: 13] 
 
 =item email
 
@@ -105,7 +105,7 @@ Email address of the customer (B<required>)
 
 =item name
 
-Customer name (B<required>) 
+Customer name [min length: 2] (B<required>) 
 
 =item reference
 
@@ -115,7 +115,7 @@ Reference field for external applications use.
 
 =item subscriptions.amount
 
-Amount of payment in minor units. Example: 1000 = 10.00 
+Amount of payment in minor units. Example: 1000 = 10.00 [min value: 50, max value: 99999999] 
 
 =item subscriptions.coupon
 
@@ -123,7 +123,7 @@ Coupon associated with the subscription for the customer.
 
 =item subscriptions.currency
 
-Currency code (ISO-4217). Must match the currency associated with your account. (B<default:USD>)
+Currency code (ISO-4217). Must match the currency associated with your account. [default: USD] 
 
 =item subscriptions.customer
 
@@ -143,7 +143,7 @@ The plan ID that the subscription should be created from.
 
 =item subscriptions.quantity
 
-Quantity of the plan for the subscription. 
+Quantity of the plan for the subscription. [min value: 1] 
 
 =item token
 
@@ -186,20 +186,17 @@ Filters to apply to the list.
 
 
 
-
 =item C<max>
 
-Allows up to a max of 50 list items to return.
+Allows up to a max of 50 list items to return. [max value: 50, default: 20]
 
 
-(B<default: 20>)
 
 =item C<offset>
 
-Used in paging of the list.  This is the start offset of the page.
+Used in paging of the list.  This is the start offset of the page. [default: 0]
 
 
-(B<default: 0>)
 
 =item C<sorting>
 
@@ -220,7 +217,6 @@ The value maps properties to the sort direction (either C<asc> for ascending or 
 
 
 =back
-
 
 
 
@@ -261,68 +257,68 @@ The properties that can be updated are:
 
 =item C<card.addressCity>
 
-B<(required)>
+City of the cardholder. (B<required>) 
 
 =item C<card.addressCountry>
 
-B<(required)>
+Country code (ISO-3166-1-alpha-2 code) of residence of the cardholder. (B<required>) 
 
 =item C<card.addressLine1>
 
-B<(required)>
+Address of the cardholder. (B<required>) 
 
 =item C<card.addressLine2>
 
-B<(required)>
+Address of the cardholder if needed. (B<required>) 
 
 =item C<card.addressState>
 
-B<(required)>
+State code (USPS code) of residence of the cardholder. (B<required>) 
 
 =item C<card.addressZip>
 
-B<(required)>
+Postal code of the cardholder. The postal code size is between 5 and 9 in length and only contain numbers. (B<required>) 
 
 =item C<card.cvc>
 
-B<(required)>
+CVC security code of the card. This is the code on the back of the card. Example: 123 (B<required>) 
 
 =item C<card.expMonth>
 
-B<(required)>
+Expiration month of the card. Format is MM.  Example: January = 01 (B<required>) 
 
 =item C<card.expYear>
 
-B<(required)>
+Expiration year of the card. Format is YY. Example: 2013 = 13 (B<required>) 
 
 =item C<card.id>
 
-
+ID of card. If present, card details for the customer will not be updated. If not present, the customer will be updated with the supplied card details. 
 
 =item C<card.name>
 
-B<(required)>
+Name as appears on the card. (B<required>) 
 
 =item C<card.number>
 
-
+Card number as it appears on the card. [max length: 19, min length: 13] 
 
 =item C<email>
 
-B<(required)>
+Email address of the customer (B<required>) 
 
 
 =item C<name>
 
-B<(required)>
+Customer name [min length: 2] (B<required>) 
 
 =item C<reference>
 
-
+Reference field for external applications use. 
 
 =item C<token>
 
-
+If specified, card associated with card token will be added to the customer 
 
 Authentication is done using the same credentials used when the AccessToken was created.
 
@@ -342,11 +338,11 @@ L<http://www.simplify.com>
 
 =head1 VERSION
 
-1.0.4
+1.0.5
 
 =head1 LICENSE
 
-Copyright (c) 2013, MasterCard International Incorporated
+Copyright (c) 2013, 2014 MasterCard International Incorporated
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are 

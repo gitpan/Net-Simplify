@@ -68,7 +68,7 @@
   Version
   -------
 
-  This is version 1.0.4 of the SDK.  For an up-to-date
+  This is version 1.0.5 of the SDK.  For an up-to-date
   version check at https://www.simplify.com/commerce/docs/sdk/perl.
 
   Licensing
@@ -91,6 +91,6 @@
   Copyright
   ---------
 
-  Copyright (c) 2013, MasterCard International Incorporated
+  Copyright (c) 2013, 2014 MasterCard International Incorporated
   All rights reserved.
 

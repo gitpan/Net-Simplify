@@ -1,5 +1,9 @@
 Revision history for Perl module Net::Simplify
 
+1.0.5 2014-01-20
+
+   - Added refunded fees data to the payment response.
+
 1.0.4 2013-10-31
 
    - Updates to API documentation.

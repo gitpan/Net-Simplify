@@ -44,20 +44,17 @@ Filters to apply to the list.
 
 
 
-
 =item C<max>
 
-Allows up to a max of 50 list items to return.
+Allows up to a max of 50 list items to return. [max value: 50, default: 20]
 
 
-(B<default: 20>)
 
 =item C<offset>
 
-Used in paging of the list.  This is the start offset of the page.
+Used in paging of the list.  This is the start offset of the page. [default: 0]
 
 
-(B<default: 0>)
 
 =item C<sorting>
 
@@ -74,7 +71,6 @@ The value maps properties to the sort direction (either C<asc> for ascending or 
 
 
 =back
-
 
 
 
@@ -117,11 +113,11 @@ L<http://www.simplify.com>
 
 =head1 VERSION
 
-1.0.4
+1.0.5
 
 =head1 LICENSE
 
-Copyright (c) 2013, MasterCard International Incorporated
+Copyright (c) 2013, 2014 MasterCard International Incorporated
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are 

@@ -42,27 +42,27 @@ The URL callback for the cardtoken
 
 =item card.addressCity
 
-City of the cardholder. 
+City of the cardholder. [max length: 50, min length: 2] 
 
 =item card.addressCountry
 
-Country code (ISO-3166-1-alpha-2 code) of residence of the cardholder. 
+Country code (ISO-3166-1-alpha-2 code) of residence of the cardholder. [max length: 2, min length: 2] 
 
 =item card.addressLine1
 
-Address of the cardholder. 
+Address of the cardholder. [max length: 255] 
 
 =item card.addressLine2
 
-Address of the cardholder if needed. 
+Address of the cardholder if needed. [max length: 255] 
 
 =item card.addressState
 
-State code (USPS code) of residence of the cardholder. 
+State code (USPS code) of residence of the cardholder. [max length: 2, min length: 2] 
 
 =item card.addressZip
 
-Postal code of the cardholder. 
+Postal code of the cardholder. The postal code size is between 5 and 9 in length and only contain numbers. [max length: 9, min length: 3] 
 
 =item card.cvc
 
@@ -70,19 +70,19 @@ CVC security code of the card. This is the code on the back of the card. Example
 
 =item card.expMonth
 
-Expiration month of the card. Format is MM. Example: January = 01 (B<required>) 
+Expiration month of the card. Format is MM. Example: January = 01 [min value: 1, max value: 12] (B<required>) 
 
 =item card.expYear
 
-Expiration year of the card. Format is YY. Example: 2013 = 13 (B<required>) 
+Expiration year of the card. Format is YY. Example: 2013 = 13 [max value: 99] (B<required>) 
 
 =item card.name
 
-Name as appears on the card. 
+Name as appears on the card. [max length: 50, min length: 2] 
 
 =item card.number
 
-Card number as it appears on the card. (B<required>) 
+Card number as it appears on the card. [max length: 19, min length: 13] (B<required>) 
 
 =item key
 
@@ -132,11 +132,11 @@ L<http://www.simplify.com>
 
 =head1 VERSION
 
-1.0.4
+1.0.5
 
 =head1 LICENSE
 
-Copyright (c) 2013, MasterCard International Incorporated
+Copyright (c) 2013, 2014 MasterCard International Incorporated
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are 
