@@ -92,6 +92,7 @@ L<Net::Simplify::FieldError>,
 L<Net::Simplify::IllegalArgumentException>,
 L<Net::Simplify::Invoice>,
 L<Net::Simplify::InvoiceItem>,
+L<Net::Simplify::Tax>,
 L<Net::Simplify::NotAllowedException>,
 L<Net::Simplify::ObjectNotFoundException>,
 L<Net::Simplify::Payment>,
@@ -104,7 +105,7 @@ L<http://www.simplify.com>
 
 =head1 VERSION
 
-1.0.5
+1.0.6
 
 =head1 LICENSE
 
@@ -169,6 +170,7 @@ use Net::Simplify::Customer;
 use Net::Simplify::Deposit;
 use Net::Simplify::Invoice;
 use Net::Simplify::InvoiceItem;
+use Net::Simplify::Tax;
 use Net::Simplify::Payment;
 use Net::Simplify::Plan;
 use Net::Simplify::Refund;

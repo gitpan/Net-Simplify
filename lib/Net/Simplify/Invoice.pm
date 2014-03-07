@@ -12,6 +12,9 @@ Net::Simplify::Invoice - A Simplify Commerce Invoice object
   $Net::Simplify::public_key = 'YOUR PUBLIC KEY';
   $Net::Simplify::private_key = 'YOUR PRIVATE KEY';
 
+  # Create a new Invoice.
+  my $invoice = Net::Simplify::Invoice->create{ {...});
+
   # Retrieve a Invoice given its ID.
   my $invoice = Net::Simplify::Invoice->find('a7e41');
 
@@ -19,6 +22,10 @@ Net::Simplify::Invoice - A Simplify Commerce Invoice object
   my $invoice = Net::Simplify::Invoice->find('a7e41');
   $invoice->{PROPERTY} = "NEW VALUE";
   $invoice->update();
+
+  # Delete
+  my $invoice = Net::Simplify::Invoice->find('a7e41');
+  $invoice->delete();
 
   # Retrieve a list of objects
   my $invoices = Net::Simplify::Invoice->list({max => 10});
@@ -29,6 +36,110 @@ Net::Simplify::Invoice - A Simplify Commerce Invoice object
 =head1 DESCRIPTION
 
 =head2 METHODS
+
+=head3 create(%params, $auth)
+
+Creates a C<Net::Simplify::Invoice> object.  The parameters are:
+
+=over 4
+
+=item C<%params>
+
+Hash map containing initial values for the object.  Valid keys are:
+
+=over 4
+
+=item currency
+
+Currency code (ISO-4217). Must match the currency associated with your account. [max length: 3, min length: 3, default: USD] 
+
+=item customer
+
+The customer ID of the customer we are invoicing.  This is optional is a name and email are provided 
+
+=item discountRate
+
+The discount percent as a decimal e.g. 12.5.  This is used to calculate the discount amount which is subtracted from the total amount due before any tax is applied. [max length: 6] 
+
+=item dueDate
+
+The date invoice payment is due.  If a late fee is provided this will be added to the invoice total is the due date has past. 
+
+=item email
+
+The email of the customer we are invoicing.  This is optional if a customer id is provided.  A new customer will be created using the the name and email. 
+
+=item invoiceId
+
+User defined invoice id. If not provided the system will generate a numeric id. [max length: 255] 
+
+
+
+=item items.amount
+
+Amount of the invoice item (minor units). Example: 1000 = 10.00. [min value: 1, max value: 9999900] (B<required>) 
+
+=item items.description
+
+The description of the invoice item. [max length: 1024] 
+
+=item items.invoice
+
+The ID of the invoice this item belongs to. 
+
+=item items.quantity
+
+Quantity of the item.  This total amount of the invoice item is the amount * quantity. [min value: 1, max value: 999999, default: 1] 
+
+=item items.reference
+
+User defined reference field. [max length: 255] 
+
+=item items.tax
+
+The tax ID of the tax charge in the invoice item. 
+
+=item lateFee
+
+The late fee amount that will be added to the invoice total is the due date is past due.  Value provided must be in minor units. Example: 1000 = 10.00 [max value: 9999900] 
+
+=item memo
+
+A memo that is displayed to the customer on the invoice payment screen. [max length: 4000] 
+
+=item name
+
+The name of the customer we are invoicing.  This is optional if a customer id is provided.  A new customer will be created using the the name and email. [max length: 50, min length: 2] 
+
+=item note
+
+This field can be used to store a note that is not displayed to the customer. [max length: 4000] 
+
+=item reference
+
+User defined reference field. [max length: 255] 
+
+=item type
+
+The type of invoice.  One of WEB or MOBILE. [valid values: WEB, MOBILE, default: WEB] 
+
+
+=back
+
+=item C<$auth>
+
+Authentication object for accessing the API.  If no value is passed the global keys
+C<$Net::Simplify::public_key> and C<$Net::Simplify::private_key> are used.
+
+=back
+
+
+
+
+=head3 delete()
+
+Deletes the C<Net::Simplify::Invoice> object.  Authentication is done using the same credentials used when the AccessToken was created.
+
 
 
 =head3 list(%criteria, $auth)
@@ -72,11 +183,13 @@ The value maps properties to the sort direction (either C<asc> for ascending or 
 
 =item C<invoiceDate>
 
+=item C<dueDate>
+
+=item C<datePaid>
+
 =item C<customer>
 
-=item C<amount>
-
-=item C<processedDate>
+=item C<status>
 
 
 =back
@@ -118,10 +231,66 @@ The properties that can be updated are:
 =over 4
 
 
+=item C<datePaid>
+
+This is the date the invoice was PAID in UTC millis. 
+
+=item C<discountRate>
+
+The discount percent as a decimal e.g. 12.5.  This is used to calculate the discount amount which is subtracted from the total amount due before any tax is applied. [max length: 6] 
+
+=item C<dueDate>
+
+The date invoice payment is due.  If a late fee is provided this will be added to the invoice total is the due date has past. 
+
+
+=item C<items.amount>
+
+Amount of the invoice item (minor units). Example: 1000 = 10.00 [min value: 1, max value: 9999900] (B<required>) 
+
+=item C<items.description>
+
+The description of the invoice item. [max length: 1024] 
+
+=item C<items.invoice>
+
+The ID of the invoice this item belongs to. 
+
+=item C<items.quantity>
+
+Quantity of the item.  This total amount of the invoice item is the amount * quantity. [min value: 1, max value: 999999, default: 1] 
+
+=item C<items.reference>
+
+User defined reference field. [max length: 255] 
+
+=item C<items.tax>
+
+The tax ID of the tax charge in the invoice item. 
+
+=item C<lateFee>
+
+The late fee amount that will be added to the invoice total is the due date is past due.  Value provided must be in minor units. Example: 1000 = 10.00. 
+
+=item C<memo>
+
+A memo that is displayed to the customer on the invoice payment screen. [max length: 4000] 
+
+=item C<note>
+
+This field can be used to store a note that is not displayed to the customer. [max length: 4000] 
+
+=item C<payment>
+
+The ID of the payment.  Use this ID to query the /payment API. [max length: 255] 
+
+=item C<reference>
+
+User defined reference field. [max length: 255] 
 
 =item C<status>
 
-New status of the invoice. [valid values: PAID] (B<required>) 
+New status of the invoice. 
 
 Authentication is done using the same credentials used when the AccessToken was created.
 
@@ -141,7 +310,7 @@ L<http://www.simplify.com>
 
 =head1 VERSION
 
-1.0.5
+1.0.6
 
 =head1 LICENSE
 
@@ -182,6 +351,26 @@ use Net::Simplify::Domain;
 use Net::Simplify::DomainList;
 
 our @ISA = qw(Net::Simplify::Domain);
+
+sub create {
+
+    my ($class, $params, $auth) = @_;
+    
+    $auth = Net::Simplify::SimplifyApi->get_authentication($auth);
+    my $result = Net::Simplify::SimplifyApi->send_api_request("invoice", 'create', $params, $auth);
+
+    $class->SUPER::new($result, $auth);
+}
+
+sub delete {
+
+    my ($self) = @_;
+
+    my $auth = Net::Simplify::SimplifyApi->get_authentication($self->{_authentication});
+
+    my $id = $self->{id};
+    $self->merge(Net::Simplify::SimplifyApi->send_api_request("invoice", 'delete', {id => $id}, $auth));
+}
 
 sub list {
     my ($class, $criteria, $auth) = @_;

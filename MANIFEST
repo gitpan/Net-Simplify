@@ -32,6 +32,7 @@ lib/Net/Simplify/Refund.pm
 lib/Net/Simplify/SimplifyApi.pm
 lib/Net/Simplify/Subscription.pm
 lib/Net/Simplify/SystemException.pm
+lib/Net/Simplify/Tax.pm
 lib/Net/Simplify/Webhook.pm
 META.yml                                 Module YAML meta-data (added by MakeMaker)
 META.json                                Module JSON meta-data (added by MakeMaker)

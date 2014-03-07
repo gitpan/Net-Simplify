@@ -1,8 +1,8 @@
-package Net::Simplify::Refund;
+package Net::Simplify::Tax;
 
 =head1 NAME
 
-Net::Simplify::Refund - A Simplify Commerce Refund object
+Net::Simplify::Tax - A Simplify Commerce Tax object
 
 =head1 SYNOPSIS
 
@@ -12,15 +12,19 @@ Net::Simplify::Refund - A Simplify Commerce Refund object
   $Net::Simplify::public_key = 'YOUR PUBLIC KEY';
   $Net::Simplify::private_key = 'YOUR PRIVATE KEY';
 
-  # Create a new Refund.
-  my $refund = Net::Simplify::Refund->create{ {...});
+  # Create a new Tax.
+  my $tax = Net::Simplify::Tax->create{ {...});
 
-  # Retrieve a Refund given its ID.
-  my $refund = Net::Simplify::Refund->find('a7e41');
+  # Retrieve a Tax given its ID.
+  my $tax = Net::Simplify::Tax->find('a7e41');
+
+  # Delete
+  my $tax = Net::Simplify::Tax->find('a7e41');
+  $tax->delete();
 
   # Retrieve a list of objects
-  my $refunds = Net::Simplify::Refund->list({max => 10});
-  foreach my $v ($refunds->list) {
+  my $taxs = Net::Simplify::Tax->list({max => 10});
+  foreach my $v ($taxs->list) {
       # ...
   }
 
@@ -30,7 +34,7 @@ Net::Simplify::Refund - A Simplify Commerce Refund object
 
 =head3 create(%params, $auth)
 
-Creates a C<Net::Simplify::Refund> object.  The parameters are:
+Creates a C<Net::Simplify::Tax> object.  The parameters are:
 
 =over 4
 
@@ -40,21 +44,13 @@ Hash map containing initial values for the object.  Valid keys are:
 
 =over 4
 
-=item amount
+=item label
 
-Amount of the refund in minor units. Example: 1000 = 10.00 [min value: 1, max value: 9999900] (B<required>) 
+The label of the tax object. [max length: 255] (B<required>) 
 
-=item payment
+=item rate
 
-ID of the payment for the refund (B<required>) 
-
-=item reason
-
-Reason for the refund 
-
-=item reference
-
-Custom reference field to be used with outside systems. 
+The tax rate.  Decimal value up three decimal places.  e.g 12.501. [max length: 6] (B<required>) 
 
 
 =back
@@ -69,9 +65,15 @@ C<$Net::Simplify::public_key> and C<$Net::Simplify::private_key> are used.
 
 
 
+=head3 delete()
+
+Deletes the C<Net::Simplify::Tax> object.  Authentication is done using the same credentials used when the AccessToken was created.
+
+
+
 =head3 list(%criteria, $auth)
 
-Retrieve a list of C<Net::Simplify::Refund> objects.  The parameters are:
+Retrieve a list of C<Net::Simplify::Tax> objects.  The parameters are:
 
 =over 4
 
@@ -108,13 +110,7 @@ The value maps properties to the sort direction (either C<asc> for ascending or 
 
 =item C<id>
 
-=item C<amount>
-
-=item C<description>
-
-=item C<dateCreated>
-
-=item C<paymentDate>
+=item C<label>
 
 
 =back
@@ -130,7 +126,7 @@ The value maps properties to the sort direction (either C<asc> for ascending or 
 
 =head3 find($id, $auth)
 
-Retrieve a C<Net::Simplify::Refund> object from the API.  Parameters are:
+Retrieve a C<Net::Simplify::Tax> object from the API.  Parameters are:
 
 =over 4
 
@@ -207,16 +203,26 @@ sub create {
     my ($class, $params, $auth) = @_;
     
     $auth = Net::Simplify::SimplifyApi->get_authentication($auth);
-    my $result = Net::Simplify::SimplifyApi->send_api_request("refund", 'create', $params, $auth);
+    my $result = Net::Simplify::SimplifyApi->send_api_request("tax", 'create', $params, $auth);
 
     $class->SUPER::new($result, $auth);
+}
+
+sub delete {
+
+    my ($self) = @_;
+
+    my $auth = Net::Simplify::SimplifyApi->get_authentication($self->{_authentication});
+
+    my $id = $self->{id};
+    $self->merge(Net::Simplify::SimplifyApi->send_api_request("tax", 'delete', {id => $id}, $auth));
 }
 
 sub list {
     my ($class, $criteria, $auth) = @_;
    
     $auth = Net::Simplify::SimplifyApi->get_authentication($auth);
-    my $result = Net::Simplify::SimplifyApi->send_api_request("refund", 'list', $criteria, $auth);
+    my $result = Net::Simplify::SimplifyApi->send_api_request("tax", 'list', $criteria, $auth);
 
     Net::Simplify::DomainList->new($result, $class, $auth);
 }
@@ -225,7 +231,7 @@ sub find {
     my ($class, $id, $auth) = @_;
 
     $auth = Net::Simplify::SimplifyApi->get_authentication($auth);
-    my $result = Net::Simplify::SimplifyApi->send_api_request("refund", 'find', { id => $id }, $auth);
+    my $result = Net::Simplify::SimplifyApi->send_api_request("tax", 'find', { id => $id }, $auth);
 
     $class->SUPER::new($result, $auth);
 }

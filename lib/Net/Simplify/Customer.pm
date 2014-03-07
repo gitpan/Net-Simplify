@@ -115,7 +115,7 @@ Reference field for external applications use.
 
 =item subscriptions.amount
 
-Amount of payment in minor units. Example: 1000 = 10.00 [min value: 50, max value: 99999999] 
+Amount of payment in minor units. Example: 1000 = 10.00 [min value: 50, max value: 9999900] 
 
 =item subscriptions.coupon
 
@@ -338,7 +338,7 @@ L<http://www.simplify.com>
 
 =head1 VERSION
 
-1.0.5
+1.0.6
 
 =head1 LICENSE
 

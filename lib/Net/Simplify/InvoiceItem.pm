@@ -27,12 +27,6 @@ Net::Simplify::InvoiceItem - A Simplify Commerce InvoiceItem object
   my $invoice_item = Net::Simplify::InvoiceItem->find('a7e41');
   $invoice_item->delete();
 
-  # Retrieve a list of objects
-  my $invoice_items = Net::Simplify::InvoiceItem->list({max => 10});
-  foreach my $v ($invoice_items->list) {
-      # ...
-  }
-
 =head1 DESCRIPTION
 
 =head2 METHODS
@@ -51,19 +45,27 @@ Hash map containing initial values for the object.  Valid keys are:
 
 =item amount
 
-Amount of the invoice item (minor units). Example: 1000 = 10.00 [min value: 1, max value: 99999999] (B<required>) 
-
-=item currency
-
-Currency code (ISO-4217) for the invoice item. Must match the currency associated with your account. [default: USD] (B<required>) 
+Amount of the invoice item (minor units). Example: 1000 = 10.00 [min value: 1, max value: 9999900] (B<required>) 
 
 =item description
 
-Individual items of an invoice 
+Individual items of an invoice [max length: 1024] 
 
 =item invoice
 
-Description of the invoice item (B<required>) 
+The ID of the invoice this item belongs to. 
+
+=item quantity
+
+Quantity of the item.  This total amount of the invoice item is the amount * quantity. [min value: 1, max value: 999999, default: 1] 
+
+=item reference
+
+User defined reference field. [max length: 255] 
+
+=item tax
+
+The tax ID of the tax charge in the invoice item. 
 
 
 =back
@@ -81,64 +83,6 @@ C<$Net::Simplify::public_key> and C<$Net::Simplify::private_key> are used.
 =head3 delete()
 
 Deletes the C<Net::Simplify::InvoiceItem> object.  Authentication is done using the same credentials used when the AccessToken was created.
-
-
-
-=head3 list(%criteria, $auth)
-
-Retrieve a list of C<Net::Simplify::InvoiceItem> objects.  The parameters are:
-
-=over 4
-
-=item C<%criteria>
-
-Hash map representing the criteria to limit the results of the list operation.  Valid keys are:
-
-=over 4
-
-=item C<filter>
-
-Filters to apply to the list.
-
-
-
-=item C<max>
-
-Allows up to a max of 50 list items to return. [max value: 50, default: 20]
-
-
-
-=item C<offset>
-
-Used in paging of the list.  This is the start offset of the page. [default: 0]
-
-
-
-=item C<sorting>
-
-Allows for ascending or descending sorting of the list.
-The value maps properties to the sort direction (either C<asc> for ascending or C<desc> for descending).  Sortable properties are:
-
-=over 4
-
-=item C<id>
-
-=item C<amount>
-
-=item C<description>
-
-=item C<invoice>
-
-
-=back
-
-
-
-
-=back
-
-=back
-
 
 
 =head3 find($id, $auth)
@@ -171,16 +115,24 @@ The properties that can be updated are:
 
 =item C<amount>
 
-Amount of the invoice item (minor units). Example: 1000 = 10.00 [min value: 1, max value: 99999999] 
-
-=item C<currency>
-
-Currency code (ISO-4217) for the invoice item. Must match the currency associated with your account. [default: USD] 
+Amount of the invoice item (minor units). Example: 1000 = 10.00 [min value: 1, max value: 9999900] 
 
 =item C<description>
 
 Individual items of an invoice 
 
+
+=item C<quantity>
+
+Quantity of the item.  This total amount of the invoice item is the amount * quantity. [min value: 1, max value: 999999] 
+
+=item C<reference>
+
+User defined reference field. 
+
+=item C<tax>
+
+The tax ID of the tax charge in the invoice item. 
 
 Authentication is done using the same credentials used when the AccessToken was created.
 
@@ -200,7 +152,7 @@ L<http://www.simplify.com>
 
 =head1 VERSION
 
-1.0.5
+1.0.6
 
 =head1 LICENSE
 
@@ -260,15 +212,6 @@ sub delete {
 
     my $id = $self->{id};
     $self->merge(Net::Simplify::SimplifyApi->send_api_request("invoiceItem", 'delete', {id => $id}, $auth));
-}
-
-sub list {
-    my ($class, $criteria, $auth) = @_;
-   
-    $auth = Net::Simplify::SimplifyApi->get_authentication($auth);
-    my $result = Net::Simplify::SimplifyApi->send_api_request("invoiceItem", 'list', $criteria, $auth);
-
-    Net::Simplify::DomainList->new($result, $class, $auth);
 }
 
 sub find {
