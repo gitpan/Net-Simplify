@@ -42,7 +42,7 @@ Hash map containing initial values for the object.  Valid keys are:
 
 =item amount
 
-Amount of the refund in minor units. Example: 1000 = 10.00 [min value: 1, max value: 9999900] (B<required>) 
+Amount of the refund in the smallest unit of your currency. Example: 100 = $1.00USD [min value: 1, max value: 9999900] (B<required>) 
 
 =item payment
 
@@ -55,6 +55,10 @@ Reason for the refund
 =item reference
 
 Custom reference field to be used with outside systems. 
+
+=item replayId
+
+An identifier that can be sent to uniquely identify a refund request to facilitate retries due to I/O related issues. This identifier must be unique for your account (sandbox or live) across all of your refunds. If supplied, we will check for a refund on your account that matches this identifier. If found we will return an identical response to that of the original request. [max length: 50, min length: 1] 
 
 
 =back
@@ -160,7 +164,7 @@ L<http://www.simplify.com>
 
 =head1 VERSION
 
-1.0.6
+1.1.0
 
 =head1 LICENSE
 

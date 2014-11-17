@@ -90,7 +90,7 @@ L<http://www.simplify.com>
 
 =head1 VERSION
 
-1.0.6
+1.1.0
 
 =head1 LICENSE
 

@@ -45,7 +45,7 @@ Hash map containing initial values for the object.  Valid keys are:
 
 =item amount
 
-Amount of the invoice item (minor units). Example: 1000 = 10.00 [min value: 1, max value: 9999900] (B<required>) 
+Amount of the invoice item in the smallest unit of your currency. Example: 100 = $1.00USD [min value: 1, max value: 9999900] (B<required>) 
 
 =item description
 
@@ -54,6 +54,10 @@ Individual items of an invoice [max length: 1024]
 =item invoice
 
 The ID of the invoice this item belongs to. 
+
+=item product
+
+Product ID this item relates to. (B<required>) 
 
 =item quantity
 
@@ -115,7 +119,7 @@ The properties that can be updated are:
 
 =item C<amount>
 
-Amount of the invoice item (minor units). Example: 1000 = 10.00 [min value: 1, max value: 9999900] 
+Amount of the invoice item in the smallest unit of your currency. Example: 100 = $1.00USD [min value: 1, max value: 9999900] 
 
 =item C<description>
 
@@ -152,7 +156,7 @@ L<http://www.simplify.com>
 
 =head1 VERSION
 
-1.0.6
+1.1.0
 
 =head1 LICENSE
 

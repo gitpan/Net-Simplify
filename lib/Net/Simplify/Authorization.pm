@@ -1,8 +1,8 @@
-package Net::Simplify::Webhook;
+package Net::Simplify::Authorization;
 
 =head1 NAME
 
-Net::Simplify::Webhook - A Simplify Commerce Webhook object
+Net::Simplify::Authorization - A Simplify Commerce Authorization object
 
 =head1 SYNOPSIS
 
@@ -12,24 +12,19 @@ Net::Simplify::Webhook - A Simplify Commerce Webhook object
   $Net::Simplify::public_key = 'YOUR PUBLIC KEY';
   $Net::Simplify::private_key = 'YOUR PRIVATE KEY';
 
-  # Create a new Webhook.
-  my $webhook = Net::Simplify::Webhook->create{ {...});
+  # Create a new Authorization.
+  my $authorization = Net::Simplify::Authorization->create{ {...});
 
-  # Retrieve a Webhook given its ID.
-  my $webhook = Net::Simplify::Webhook->find('a7e41');
-
-  # Update existing Webhook.
-  my $webhook = Net::Simplify::Webhook->find('a7e41');
-  $webhook->{PROPERTY} = "NEW VALUE";
-  $webhook->update();
+  # Retrieve a Authorization given its ID.
+  my $authorization = Net::Simplify::Authorization->find('a7e41');
 
   # Delete
-  my $webhook = Net::Simplify::Webhook->find('a7e41');
-  $webhook->delete();
+  my $authorization = Net::Simplify::Authorization->find('a7e41');
+  $authorization->delete();
 
   # Retrieve a list of objects
-  my $webhooks = Net::Simplify::Webhook->list({max => 10});
-  foreach my $v ($webhooks->list) {
+  my $authorizations = Net::Simplify::Authorization->list({max => 10});
+  foreach my $v ($authorizations->list) {
       # ...
   }
 
@@ -39,7 +34,7 @@ Net::Simplify::Webhook - A Simplify Commerce Webhook object
 
 =head3 create(%params, $auth)
 
-Creates a C<Net::Simplify::Webhook> object.  The parameters are:
+Creates a C<Net::Simplify::Authorization> object.  The parameters are:
 
 =over 4
 
@@ -49,9 +44,79 @@ Hash map containing initial values for the object.  Valid keys are:
 
 =over 4
 
-=item url
+=item amount
 
-Endpoint URL (B<required>) 
+Amount of the payment (in the smallest unit of your currency). Example: 100 = $1.00USD [min value: 50, max value: 9999900] (B<required>) 
+
+
+
+=item card.addressCity
+
+City of the cardholder. [max length: 50, min length: 2] 
+
+=item card.addressCountry
+
+Country code (ISO-3166-1-alpha-2 code) of residence of the cardholder. [max length: 2, min length: 2] 
+
+=item card.addressLine1
+
+Address of the cardholder. [max length: 255] 
+
+=item card.addressLine2
+
+Address of the cardholder if needed. [max length: 255] 
+
+=item card.addressState
+
+State code (USPS code) of residence of the cardholder. [max length: 2, min length: 2] 
+
+=item card.addressZip
+
+Postal code of the cardholder. The postal code size is between 5 and 9 characters in length and only contains numbers or letters. [max length: 9, min length: 3] 
+
+=item card.cvc
+
+CVC security code of the card. This is the code on the back of the card. Example: 123 
+
+=item card.expMonth
+
+Expiration month of the card. Format is MM. Example: January = 01 [min value: 1, max value: 12] (B<required>) 
+
+=item card.expYear
+
+Expiration year of the card. Format is YY. Example: 2013 = 13 [max value: 99] (B<required>) 
+
+=item card.name
+
+Name as it appears on the card. [max length: 50, min length: 2] 
+
+=item card.number
+
+Card number as it appears on the card. [max length: 19, min length: 13] (B<required>) 
+
+=item currency
+
+Currency code (ISO-4217) for the transaction. Must match the currency associated with your account. [default: USD] (B<required>) 
+
+=item customer
+
+ID of customer. If specified, card on file of customer will be used. 
+
+=item description
+
+Free form text field to be used as a description of the payment. This field is echoed back with the payment on any find or list operations. [max length: 1024] 
+
+=item reference
+
+Custom reference field to be used with outside systems. 
+
+=item replayId
+
+An identifier that can be sent to uniquely identify a payment request to facilitate retries due to I/O related issues. This identifier must be unique for your account (sandbox or live) across all of your payments. If supplied, we will check for a payment on your account that matches this identifier, and if one is found we will attempt to return an identical response of the original request. [max length: 50, min length: 1] 
+
+=item token
+
+If specified, card associated with card token will be used. [max length: 255] 
 
 
 =back
@@ -68,13 +133,13 @@ C<$Net::Simplify::public_key> and C<$Net::Simplify::private_key> are used.
 
 =head3 delete()
 
-Deletes the C<Net::Simplify::Webhook> object.  Authentication is done using the same credentials used when the AccessToken was created.
+Deletes the C<Net::Simplify::Authorization> object.  Authentication is done using the same credentials used when the AccessToken was created.
 
 
 
 =head3 list(%criteria, $auth)
 
-Retrieve a list of C<Net::Simplify::Webhook> objects.  The parameters are:
+Retrieve a list of C<Net::Simplify::Authorization> objects.  The parameters are:
 
 =over 4
 
@@ -98,7 +163,7 @@ Allows up to a max of 50 list items to return. [max value: 50, default: 20]
 
 =item C<offset>
 
-Used in paging of the list.  This is the start offset of the page. [default: 0]
+Used in pagination of the list. This is the start offset of the page. [default: 0]
 
 
 
@@ -110,6 +175,14 @@ The value maps properties to the sort direction (either C<asc> for ascending or 
 =over 4
 
 =item C<dateCreated>
+
+=item C<amount>
+
+=item C<id>
+
+=item C<description>
+
+=item C<paymentDate>
 
 
 =back
@@ -125,7 +198,7 @@ The value maps properties to the sort direction (either C<asc> for ascending or 
 
 =head3 find($id, $auth)
 
-Retrieve a C<Net::Simplify::Webhook> object from the API.  Parameters are:
+Retrieve a C<Net::Simplify::Authorization> object from the API.  Parameters are:
 
 =over 4
 
@@ -140,25 +213,6 @@ C<$Net::Simplify::public_key> and C<$Net::Simplify::private_key> are used.
 
 =back
 
-
-
-
-=head3 update()
-
-Update C<Net::Simplify::Webhook> object.
-The properties that can be updated are:
-
-=over 4
-
-
-
-=item C<url>
-
-Endpoint URL (B<required>) 
-
-Authentication is done using the same credentials used when the AccessToken was created.
-
-=back
 
 
 
@@ -221,7 +275,7 @@ sub create {
     my ($class, $params, $auth) = @_;
     
     $auth = Net::Simplify::SimplifyApi->get_authentication($auth);
-    my $result = Net::Simplify::SimplifyApi->send_api_request("webhook", 'create', $params, $auth);
+    my $result = Net::Simplify::SimplifyApi->send_api_request("authorization", 'create', $params, $auth);
 
     $class->SUPER::new($result, $auth);
 }
@@ -233,14 +287,14 @@ sub delete {
     my $auth = Net::Simplify::SimplifyApi->get_authentication($self->{_authentication});
 
     my $id = $self->{id};
-    $self->merge(Net::Simplify::SimplifyApi->send_api_request("webhook", 'delete', {id => $id}, $auth));
+    $self->merge(Net::Simplify::SimplifyApi->send_api_request("authorization", 'delete', {id => $id}, $auth));
 }
 
 sub list {
     my ($class, $criteria, $auth) = @_;
    
     $auth = Net::Simplify::SimplifyApi->get_authentication($auth);
-    my $result = Net::Simplify::SimplifyApi->send_api_request("webhook", 'list', $criteria, $auth);
+    my $result = Net::Simplify::SimplifyApi->send_api_request("authorization", 'list', $criteria, $auth);
 
     Net::Simplify::DomainList->new($result, $class, $auth);
 }
@@ -249,20 +303,9 @@ sub find {
     my ($class, $id, $auth) = @_;
 
     $auth = Net::Simplify::SimplifyApi->get_authentication($auth);
-    my $result = Net::Simplify::SimplifyApi->send_api_request("webhook", 'find', { id => $id }, $auth);
+    my $result = Net::Simplify::SimplifyApi->send_api_request("authorization", 'find', { id => $id }, $auth);
 
     $class->SUPER::new($result, $auth);
-}
-
-sub update {
-
-    my ($self) = @_;
-
-    my $auth = Net::Simplify::SimplifyApi->get_authentication($self->{_authentication});
-    my $params = { %$self };
-    delete $params->{_authentication};
-
-    $self->merge(Net::Simplify::SimplifyApi->send_api_request("webhook", 'update', $params, $auth));
 }
 
 

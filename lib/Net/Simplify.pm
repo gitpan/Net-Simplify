@@ -79,6 +79,7 @@ L<Net::Simplify::AccessToken>,
 L<Net::Simplify::ApiException>,
 L<Net::Simplify::Authentication>,
 L<Net::Simplify::AuthenticationException>,
+L<Net::Simplify::Authorization>,
 L<Net::Simplify::BadRequestException>,
 L<Net::Simplify::CardToken>,
 L<Net::Simplify::Chargeback>,
@@ -105,7 +106,7 @@ L<http://www.simplify.com>
 
 =head1 VERSION
 
-1.0.6
+1.1.0
 
 =head1 LICENSE
 
@@ -162,6 +163,7 @@ use Net::Simplify::FieldError;
 use Net::Simplify::SimplifyApi;
 use Net::Simplify::Event;
 
+use Net::Simplify::Authorization;
 use Net::Simplify::CardToken;
 use Net::Simplify::Chargeback;
 use Net::Simplify::Constants;

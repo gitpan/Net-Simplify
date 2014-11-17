@@ -77,7 +77,7 @@ User defined invoice id. If not provided the system will generate a numeric id. 
 
 =item items.amount
 
-Amount of the invoice item (minor units). Example: 1000 = 10.00. [min value: 1, max value: 9999900] (B<required>) 
+Amount of the invoice item (the smallest unit of your currency). Example: 100 = $1.00USD [min value: 1, max value: 9999900] (B<required>) 
 
 =item items.description
 
@@ -86,6 +86,10 @@ The description of the invoice item. [max length: 1024]
 =item items.invoice
 
 The ID of the invoice this item belongs to. 
+
+=item items.product
+
+The product this invoice item refers to. (B<required>) 
 
 =item items.quantity
 
@@ -101,7 +105,7 @@ The tax ID of the tax charge in the invoice item.
 
 =item lateFee
 
-The late fee amount that will be added to the invoice total is the due date is past due.  Value provided must be in minor units. Example: 1000 = 10.00 [max value: 9999900] 
+The late fee amount that will be added to the invoice total is the due date is past due.  Value provided must be in the smallest unit of your currency. Example: 100 = $1.00USD [max value: 9999900] 
 
 =item memo
 
@@ -118,6 +122,30 @@ This field can be used to store a note that is not displayed to the customer. [m
 =item reference
 
 User defined reference field. [max length: 255] 
+
+=item shippingAddressLine1
+
+Address Line 1 where the product should be shipped. [max length: 255] 
+
+=item shippingAddressLine2
+
+Address Line 2 where the product should be shipped. [max length: 255] 
+
+=item shippingCity
+
+City where the product should be shipped. [max length: 255, min length: 2] 
+
+=item shippingCountry
+
+Country where the product should be shipped. [max length: 2, min length: 2] 
+
+=item shippingState
+
+State where the product should be shipped. [max length: 2, min length: 2] 
+
+=item shippingZip
+
+ZIP code where the product should be shipped. [max length: 9, min length: 5] 
 
 =item type
 
@@ -246,7 +274,7 @@ The date invoice payment is due.  If a late fee is provided this will be added t
 
 =item C<items.amount>
 
-Amount of the invoice item (minor units). Example: 1000 = 10.00 [min value: 1, max value: 9999900] (B<required>) 
+Amount of the invoice item in the smallest unit of your currency. Example: 100 = $1.00USD [min value: 1, max value: 9999900] (B<required>) 
 
 =item C<items.description>
 
@@ -255,6 +283,10 @@ The description of the invoice item. [max length: 1024]
 =item C<items.invoice>
 
 The ID of the invoice this item belongs to. 
+
+=item C<items.product>
+
+The Id of the product this item refers to. (B<required>) 
 
 =item C<items.quantity>
 
@@ -270,7 +302,7 @@ The tax ID of the tax charge in the invoice item.
 
 =item C<lateFee>
 
-The late fee amount that will be added to the invoice total is the due date is past due.  Value provided must be in minor units. Example: 1000 = 10.00. 
+The late fee amount that will be added to the invoice total is the due date is past due.  Value provided must be in the smallest unit of your currency. Example: 100 = $1.00USD 
 
 =item C<memo>
 
@@ -287,6 +319,30 @@ The ID of the payment.  Use this ID to query the /payment API. [max length: 255]
 =item C<reference>
 
 User defined reference field. [max length: 255] 
+
+=item C<shippingAddressLine1>
+
+The shipping address line 1 for the product. [max length: 255] 
+
+=item C<shippingAddressLine2>
+
+The shipping address line 2 for the product. [max length: 255] 
+
+=item C<shippingCity>
+
+The shipping city for the product. [max length: 255, min length: 2] 
+
+=item C<shippingCountry>
+
+The shipping country for the product. [max length: 2, min length: 2] 
+
+=item C<shippingState>
+
+The shipping state for the product. [max length: 2, min length: 2] 
+
+=item C<shippingZip>
+
+The shipping ZIP code for the product. [max length: 9, min length: 5] 
 
 =item C<status>
 
@@ -310,7 +366,7 @@ L<http://www.simplify.com>
 
 =head1 VERSION
 
-1.0.6
+1.1.0
 
 =head1 LICENSE
 

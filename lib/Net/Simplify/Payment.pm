@@ -18,6 +18,11 @@ Net::Simplify::Payment - A Simplify Commerce Payment object
   # Retrieve a Payment given its ID.
   my $payment = Net::Simplify::Payment->find('a7e41');
 
+  # Update existing Payment.
+  my $payment = Net::Simplify::Payment->find('a7e41');
+  $payment->{PROPERTY} = "NEW VALUE";
+  $payment->update();
+
   # Retrieve a list of objects
   my $payments = Net::Simplify::Payment->list({max => 10});
   foreach my $v ($payments->list) {
@@ -42,7 +47,11 @@ Hash map containing initial values for the object.  Valid keys are:
 
 =item amount
 
-Amount of the payment (minor units). Example: 1000 = 10.00 [min value: 50, max value: 9999900] (B<required>) 
+Amount of the payment (in the smallest unit of your currency). Example: 100 = $1.00USD [min value: 50, max value: 9999900] 
+
+=item authorization
+
+The ID of the authorization being used to capture the payment. 
 
 
 
@@ -68,7 +77,7 @@ State code (USPS code) of residence of the cardholder. [max length: 2, min lengt
 
 =item card.addressZip
 
-Postal code of the cardholder. The postal code size is between 5 and 9 in length and only contain numbers. [max length: 9, min length: 3] 
+Postal code of the cardholder. The postal code size is between 5 and 9 in length and only contain numbers or letters. [max length: 9, min length: 3] 
 
 =item card.cvc
 
@@ -100,11 +109,19 @@ ID of customer. If specified, card on file of customer will be used.
 
 =item description
 
-Custom naming of payment for external systems to use. 
+Free form text field to be used as a description of the payment. This field is echoed back with the payment on any find or list operations. [max length: 1024] 
+
+=item invoice
+
+ID of invoice for which this payment is being made. 
 
 =item reference
 
 Custom reference field to be used with outside systems. 
+
+=item replayId
+
+An identifier that can be sent to uniquely identify a payment request to facilitate retries due to I/O related issues. This identifier must be unique for your account (sandbox or live) across all of your payments. If supplied, we will check for a payment on your account that matches this identifier. If found will attempt to return an identical response of the original request. [max length: 50, min length: 1] 
 
 =item token
 
@@ -202,6 +219,21 @@ C<$Net::Simplify::public_key> and C<$Net::Simplify::private_key> are used.
 
 
 
+=head3 update()
+
+Update C<Net::Simplify::Payment> object.
+The properties that can be updated are:
+
+=over 4
+
+
+
+Authentication is done using the same credentials used when the AccessToken was created.
+
+=back
+
+
+
 
 =head1 SEE ALSO
 
@@ -214,7 +246,7 @@ L<http://www.simplify.com>
 
 =head1 VERSION
 
-1.0.6
+1.1.0
 
 =head1 LICENSE
 
@@ -282,6 +314,17 @@ sub find {
     my $result = Net::Simplify::SimplifyApi->send_api_request("payment", 'find', { id => $id }, $auth);
 
     $class->SUPER::new($result, $auth);
+}
+
+sub update {
+
+    my ($self) = @_;
+
+    my $auth = Net::Simplify::SimplifyApi->get_authentication($self->{_authentication});
+    my $params = { %$self };
+    delete $params->{_authentication};
+
+    $self->merge(Net::Simplify::SimplifyApi->send_api_request("payment", 'update', $params, $auth));
 }
 
 

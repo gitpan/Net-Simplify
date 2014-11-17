@@ -68,7 +68,7 @@
   Version
   -------
 
-  This is version 1.0.6 of the SDK.  For an up-to-date
+  This is version 1.1.0 of the SDK.  For an up-to-date
   version check at https://www.simplify.com/commerce/docs/sdk/perl.
 
   Licensing

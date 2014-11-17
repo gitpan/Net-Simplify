@@ -51,7 +51,7 @@ Hash map containing initial values for the object.  Valid keys are:
 
 =item amount
 
-Amount of payment for the plan in minor units. Example: 1000 = 10.00 [min value: 50, max value: 9999900] (B<required>) 
+Amount of payment for the plan in the smallest unit of your currency. Example: 100 = $1.00USD [min value: 50, max value: 9999900] (B<required>) 
 
 =item currency
 
@@ -194,7 +194,7 @@ L<http://www.simplify.com>
 
 =head1 VERSION
 
-1.0.6
+1.1.0
 
 =head1 LICENSE
 

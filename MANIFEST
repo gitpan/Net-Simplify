@@ -9,6 +9,7 @@ lib/Net/Simplify/AccessToken.pm
 lib/Net/Simplify/ApiException.pm
 lib/Net/Simplify/Authentication.pm
 lib/Net/Simplify/AuthenticationException.pm
+lib/Net/Simplify/Authorization.pm
 lib/Net/Simplify/BadRequestException.pm
 lib/Net/Simplify/CardToken.pm
 lib/Net/Simplify/Chargeback.pm

@@ -51,7 +51,7 @@ Hash map containing initial values for the object.  Valid keys are:
 
 =item amountOff
 
-Amount off of the price of the product in minor units in the currency of the merchant. While this field is optional, you must provide either amountOff or percentOff for a coupon. Example: 1000 = 10.00 [min value: 1, max value: 9999900] 
+Amount off of the price of the product in the smallest units of the currency of the merchant. While this field is optional, you must provide either amountOff or percentOff for a coupon. Example: 100 = $1.00USD [min value: 1, max value: 9999900] 
 
 =item couponCode
 
@@ -224,7 +224,7 @@ L<http://www.simplify.com>
 
 =head1 VERSION
 
-1.0.6
+1.1.0
 
 =head1 LICENSE
 

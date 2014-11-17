@@ -62,7 +62,7 @@ State code (USPS code) of residence of the cardholder. [max length: 2, min lengt
 
 =item card.addressZip
 
-Postal code of the cardholder. The postal code size is between 5 and 9 in length and only contain numbers. [max length: 9, min length: 3] 
+Postal code of the cardholder. The postal code size is between 5 and 9 in length and only contain numbers or letters. [max length: 9, min length: 3] 
 
 =item card.cvc
 
@@ -132,7 +132,7 @@ L<http://www.simplify.com>
 
 =head1 VERSION
 
-1.0.6
+1.1.0
 
 =head1 LICENSE
 

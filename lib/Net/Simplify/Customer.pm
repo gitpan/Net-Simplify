@@ -73,7 +73,7 @@ State code (USPS code) of residence of the cardholder. (B<required>)
 
 =item card.addressZip
 
-Postal code of the cardholder. The postal code size is between 5 and 9 in length and only contain numbers. (B<required>) 
+Postal code of the cardholder. The postal code size is between 5 and 9 in length and only contain numbers or letters. (B<required>) 
 
 =item card.cvc
 
@@ -115,7 +115,7 @@ Reference field for external applications use.
 
 =item subscriptions.amount
 
-Amount of payment in minor units. Example: 1000 = 10.00 [min value: 50, max value: 9999900] 
+Amount of payment in the smallest unit of your currency. Example: 100 = $1.00USD [min value: 50, max value: 9999900] 
 
 =item subscriptions.coupon
 
@@ -277,7 +277,7 @@ State code (USPS code) of residence of the cardholder. (B<required>)
 
 =item C<card.addressZip>
 
-Postal code of the cardholder. The postal code size is between 5 and 9 in length and only contain numbers. (B<required>) 
+Postal code of the cardholder. The postal code size is between 5 and 9 in length and only contain numbers or letters. (B<required>) 
 
 =item C<card.cvc>
 
@@ -338,7 +338,7 @@ L<http://www.simplify.com>
 
 =head1 VERSION
 
-1.0.6
+1.1.0
 
 =head1 LICENSE
 
